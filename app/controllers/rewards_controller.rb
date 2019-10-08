@@ -8,7 +8,6 @@ class RewardsController < ApplicationController
     result = RewardsService.new(mapped_data).calculate_rewards
     render json: ResponseBuilder.success(result)
   rescue StandardError => e
-    binding.pry
     render json: ResponseBuilder.error(e.message)
   end
 
