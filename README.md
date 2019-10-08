@@ -1,6 +1,6 @@
 # README
 
-####### Decisions taken
+### Decisions taken
 * I have used data mapper design pattern to create a mapping between user and rewards
 * I have used services for the logic
 * As I love TDD, I have added some unit and integration tests
@@ -34,5 +34,4 @@ curl -F 'data=@/path/to/data.txt' http://localhost:3000/process_rewards
 
 * To run unit tests, execute below command
 `bundle exec rake test`
-* ...
 
