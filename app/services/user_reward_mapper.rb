@@ -6,7 +6,6 @@ class UserRewardMapper
   end
 
   def build_map
-    validate
     @rows.each do|row|
       row_data = row.split(" ")
       map_users_and_rewards(row_data)
@@ -61,23 +60,5 @@ class UserRewardMapper
   def user_is_already_invited?(row_data, invited_at)
     invited_user = @user_reward_map[row_data[4]]
     invited_user.present? && invited_user.invited_at < invited_at
-  end
-
-  def validate
-    validate_root_user_action
-    validate_if_date_is_valid?
-  end
-
-  def validate_root_user_action
-    if @rows[0].include?("accepts")
-      raise Exceptions::InvalidData.new("User must be invited first.")
-    end
-  end
-
-  def validate_if_date_is_valid?
-    date = @rows[0..15].first
-    if date.to_datetime > Date.today
-      raise Exceptions::InvalidDate.new("User can not be invited with future dates.")
-    end
   end
 end
